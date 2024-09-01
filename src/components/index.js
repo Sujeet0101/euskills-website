@@ -1,5 +1,7 @@
 import AboutUs from './AboutUs';
 import Blogs from './Blogs';
+import Button from './Button';
+import Banner from './Banner';
 import ClientLogo from './ClientLogo';
 import ContactUs from './ContactUs';
 import Counts from './Counts';
@@ -19,6 +21,8 @@ export{
     Navbar,
     AboutUs,
     Blogs,
+    Button,
+    Banner,
     ClientLogo,
     ContactUs,
     Counts,

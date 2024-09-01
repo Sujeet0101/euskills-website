@@ -1,3 +1,4 @@
+import { useState, useEffect } from "react";
 import styles from "./style";
 
 import {
@@ -20,34 +21,59 @@ import {
 } from "./components";
 
 const App = () => {
+
+    const [shadow, setShadow] = useState(false);
+
+    const handleScroll = () => {
+      if (window.scrollY > 0) {
+        setShadow(true);
+      } else {
+        setShadow(false);
+      }
+    };
+
+    useEffect(() => {
+      window.addEventListener("scroll", handleScroll);
+
+      return () => {
+        window.removeEventListener("scroll", handleScroll);
+      };
+    }, []);
+
   return (
-  <div className=" w-full overflow-hidden">
-    <div className={`${styles.paddingX} ${styles.flexCenter}`}>
-      <div className={`${styles.boxWidth}`}>
-        <Navbar />
+    <div className=" w-full ">
+      <div
+        className={`${styles.paddingX} ${styles.flexCenter} ${
+          shadow ? "box-shadow" : ""
+        } sticky top-0 z-50 `}
+      >
+        <div className={`${styles.boxWidth}`}>
+          <Navbar />
+        </div>
       </div>
-    </div>
 
-    <div className={`bg-primary ${styles.flexCenter}`}>
-      <div className={`${styles.boxWidth}`}>
-        <Hero />
+      <div className={` ${styles.flexCenter}`}>
+        <div className={`${styles.boxWidth}`}>
+          <Hero />
+        </div>
       </div>
-    </div>
 
-    <div className={`bg-primary ${styles.paddingX} ${styles.flexCenter}`}>
-      <div className={`${styles.boxWidth}`}>
-        <ClientLogo />
-        <DreamJob />
-        <Counts />
-        <HomeService />
-        <Course />
-        <Testimonials />
-        <CTA />
-        <Footer />
+      <div className={` ${styles.paddingX} ${styles.flexCenter}`}>
+        <div className={`${styles.boxWidth}`}>
+          <ClientLogo />
+          <DreamJob />
+          <Counts />
+          <HomeService />
+          <Course />
+          <Testimonials />
+          <CTA />
+          <Footer />
+        </div>
       </div>
+
+      <div className="h-[1200px]"></div>
     </div>
-  </div>
-  )
+  );
 };
 
 export default App;
